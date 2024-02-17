@@ -25,3 +25,7 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+fe_lab_clinicas_self_service/.vscode/launch.json
+fe_lab_clinicas_adm/.vscode/launch.json
+fe_lab_clinicas_painel/.vscode/launch.json
+fe_lab_clinicas_adm/.config/env.json

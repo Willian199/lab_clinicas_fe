@@ -4,7 +4,6 @@ import 'package:fe_lab_clinicas_painel/pages/painel/painel_controller.dart';
 import 'package:fe_lab_clinicas_painel/pages/painel/widget/painel_principal_widget.dart';
 import 'package:fe_lab_clinicas_painel/pages/painel/widget/password_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_getit/flutter_getit.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 class PainelPage extends StatefulWidget {
@@ -14,9 +13,7 @@ class PainelPage extends StatefulWidget {
   State<PainelPage> createState() => _PainelPageState();
 }
 
-class _PainelPageState extends State<PainelPage> {
-  final controller = Injector.get<PainelController>();
-
+class _PainelPageState extends State<PainelPage> with FlutterController<PainelController> {
   @override
   void initState() {
     controller.listenerPainel();
@@ -63,7 +60,7 @@ class _PainelPageState extends State<PainelPage> {
                 lastCall != null
                     ? SizedBox(
                         width: sizeOf.width * .4,
-                        child:  PainelPrincipalWidget(
+                        child: PainelPrincipalWidget(
                           password: lastCall.password,
                           passwordLabel: 'Senha anterior',
                           deskNumber: lastCall.attendantDesk.toString(),

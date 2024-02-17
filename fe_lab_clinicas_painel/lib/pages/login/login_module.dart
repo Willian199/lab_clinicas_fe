@@ -1,24 +1,24 @@
+import 'dart:async';
+
+import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import 'package:fe_lab_clinicas_painel/pages/login/login_controller.dart';
 import 'package:fe_lab_clinicas_painel/pages/login/login_page.dart';
+import 'package:fe_lab_clinicas_painel/pages/painel/painel_module.dart';
 import 'package:fe_lab_clinicas_painel/repository/user/user_repository.dart';
 import 'package:fe_lab_clinicas_painel/repository/user/user_repository_impl.dart';
 import 'package:fe_lab_clinicas_painel/service/user/user_login_service.dart';
 import 'package:fe_lab_clinicas_painel/service/user/user_login_service_impl.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_getit/flutter_getit.dart';
 
-class LoginRouter extends FlutterGetItPageRouter {
-  const LoginRouter({super.key});
-
+class LoginModule extends FlutterModule {
   @override
-  String get routeName => '/login';
+  FutureOr<void> onPostConstruct() {
+    registerApplication<UserRepository>(() => UserRepositoryImpl(restClient: inject()));
+    registerApplication<UserLoginService>(() => UserLoginServiceImpl(userRepository: inject()));
+    registerApplication(() => LoginController(loginService: inject()));
 
-  @override
-  List<Bind<Object>> get bindings => [
-        Bind.lazySingleton<UserRepository>((i) => UserRepositoryImpl(restClient: i())),
-        Bind.lazySingleton<UserLoginService>((i) => UserLoginServiceImpl(userRepository: i())),
-        Bind.lazySingleton((i) => LoginController(loginService: i())),
-      ];
+    registerPage(PainelModule.new);
+  }
 
   @override
   WidgetBuilder get view => (_) => const LoginPage();
