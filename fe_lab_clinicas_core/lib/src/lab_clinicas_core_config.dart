@@ -1,24 +1,22 @@
-import 'dart:developer';
-
 import 'package:asyncstate/asyncstate.dart';
 import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import 'package:fe_lab_clinicas_core/src/loader/lab_clinicas_loader.dart';
 import 'package:flutter/material.dart';
 
-class LabClinicasCoreConfig extends StatelessWidget {
+class LabClinicasCoreConfig<BeanT extends Object> extends StatelessWidget {
   const LabClinicasCoreConfig({
     required this.title,
     super.key,
     this.didStart,
+    this.routes = const <String, WidgetBuilder>{},
   });
 
   final String title;
   final VoidCallback? didStart;
+  final Map<String, WidgetBuilder> routes;
 
   @override
   Widget build(BuildContext context) {
-    final ddiNavigatorObserver = DDINavigatorObserver();
-
     return AsyncStateBuilder(
       loader: LabClinicasLoader(),
       builder: (navigatorObserver) {
@@ -30,18 +28,9 @@ class LabClinicasCoreConfig extends StatelessWidget {
           darkTheme: LabClinicasTheme.darkTheme,
           navigatorObservers: [
             navigatorObserver,
-            ddiNavigatorObserver,
           ],
           title: title,
-          onGenerateRoute: (RouteSettings settings) {
-            final FlutterModule instance = DDI.instance.get(qualifier: settings.name);
-            log('Navigating to /${instance.runtimeType}');
-
-            return MaterialPageRoute(
-              settings: settings,
-              builder: instance.view,
-            );
-          },
+          routes: routes,
         );
       },
     );

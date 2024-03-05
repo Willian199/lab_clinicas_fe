@@ -3,7 +3,6 @@ import 'package:fe_lab_clinicas_adm/pages/pre_checkin/pre_checkin_controller.dar
 import 'package:fe_lab_clinicas_adm/shared/data_item.dart';
 import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_getit/flutter_getit.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 class PreCheckinPage extends StatefulWidget {
@@ -13,9 +12,7 @@ class PreCheckinPage extends StatefulWidget {
   State<PreCheckinPage> createState() => _PreCheckinPageState();
 }
 
-class _PreCheckinPageState extends State<PreCheckinPage> with MessageViewMixin {
-  final controller = Injector.get<PreCheckinController>();
-
+class _PreCheckinPageState extends State<PreCheckinPage> with MessageViewMixin, FlutterController<PreCheckinController> {
   @override
   void initState() {
     messageListener(controller);

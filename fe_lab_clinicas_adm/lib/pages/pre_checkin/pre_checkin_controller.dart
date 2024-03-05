@@ -20,7 +20,7 @@ class PreCheckinController with MessageStateMixin {
       case Right(value: final form?):
         patientInformationForm.value = form;
       case Right():
-        showInfo('Nenhum paciente aguardando, pode ir tomar umc café.');
+        showInfo('Nenhum paciente aguardando, pode ir tomar um café.');
     }
   }
 }

@@ -6,15 +6,15 @@ import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import 'package:fe_lab_clinicas_self_service/src/modules/self_service/documents/scan_confirm/documents_scan_confirm_controller.dart';
 import 'package:fe_lab_clinicas_self_service/src/modules/self_service/widget/lab_clinicas_self_service_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_getit/flutter_getit.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 class DocumentsScanConfirmPage extends StatelessWidget {
-  final controller = Injector.get<DocumentsScanConfirmController>();
-  DocumentsScanConfirmPage({super.key});
+  const DocumentsScanConfirmPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = DDI.instance.get<DocumentsScanConfirmController>();
+
     final sizeOf = MediaQuery.sizeOf(context);
     final foto = ModalRoute.of(context)!.settings.arguments as XFile;
 

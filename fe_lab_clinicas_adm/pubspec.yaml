@@ -36,7 +36,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   fe_lab_clinicas_core:
     path: ../fe_lab_clinicas_core
-  flutter_getit: ^2.0.0
   dio: ^5.4.0
   shared_preferences: ^2.2.2
   signals_flutter: ^4.2.2

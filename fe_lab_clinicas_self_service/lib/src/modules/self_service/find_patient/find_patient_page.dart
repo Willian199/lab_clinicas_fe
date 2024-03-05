@@ -5,7 +5,6 @@ import 'package:fe_lab_clinicas_self_service/src/modules/self_service/self_servi
 import 'package:fe_lab_clinicas_self_service/src/modules/self_service/widget/lab_clinicas_self_service_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_getit/flutter_getit.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -16,12 +15,10 @@ class FindPatientPage extends StatefulWidget {
   State<FindPatientPage> createState() => _FindPatientPageState();
 }
 
-class _FindPatientPageState extends State<FindPatientPage> with MessageViewMixin {
+class _FindPatientPageState extends State<FindPatientPage> with MessageViewMixin, FlutterController<FindPatientController> {
   final formKey = GlobalKey<FormState>();
 
   final documentEC = TextEditingController();
-
-  final controller = Injector.get<FindPatientController>();
 
   @override
   void initState() {
@@ -30,7 +27,7 @@ class _FindPatientPageState extends State<FindPatientPage> with MessageViewMixin
       final FindPatientController(:patient, :patientNotFound) = controller;
 
       if (patient != null || patientNotFound != null) {
-        Injector.get<SelfServiceController>().goToFormPatient(patient);
+        DDI.instance.get<SelfServiceController>().goToFormPatient(patient);
       }
     });
     super.initState();

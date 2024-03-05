@@ -7,7 +7,6 @@ import 'package:fe_lab_clinicas_self_service/src/modules/self_service/self_servi
 import 'package:fe_lab_clinicas_self_service/src/modules/self_service/widget/lab_clinicas_self_service_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_getit/flutter_getit.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -21,9 +20,9 @@ class PatientPage extends StatefulWidget {
 class _PatientPageState extends State<PatientPage> with PatientFormController, MessageViewMixin {
   final formKey = GlobalKey<FormState>();
 
-  final _selfServiceController = Injector.get<SelfServiceController>();
+  final _selfServiceController = DDI.instance.get<SelfServiceController>();
 
-  final _controller = Injector.get<PatientController>();
+  final _controller = DDI.instance.get<PatientController>();
 
   late bool patientFound;
   late bool enableForm;

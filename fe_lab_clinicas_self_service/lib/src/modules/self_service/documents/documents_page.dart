@@ -4,7 +4,6 @@ import 'package:fe_lab_clinicas_self_service/src/modules/self_service/documents/
 import 'package:fe_lab_clinicas_self_service/src/modules/self_service/self_service_controller.dart';
 import 'package:fe_lab_clinicas_self_service/src/modules/self_service/widget/lab_clinicas_self_service_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_getit/flutter_getit.dart';
 
 class DocumentsPage extends StatefulWidget {
   const DocumentsPage({super.key});
@@ -13,19 +12,17 @@ class DocumentsPage extends StatefulWidget {
   State<DocumentsPage> createState() => _DocumentsPageState();
 }
 
-class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin {
-  final selfServiceController = Injector.get<SelfServiceController>();
-
+class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin, FlutterController<SelfServiceController> {
   @override
   void initState() {
-    messageListener(selfServiceController);
+    messageListener(controller);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
-    final documents = selfServiceController.model.documents;
+    final documents = controller.model.documents;
     final totalHealthInsureceCard = documents?[DocumentType.healthInsureceCard]?.length ?? 0;
     final totalMedicalOrder = documents?[DocumentType.medicalOrder]?.length ?? 0;
 
@@ -73,7 +70,7 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin {
                         onTap: () async {
                           final filePath = await Navigator.of(context).pushNamed('/self-service/documents/scan');
                           if (filePath != null && filePath != '') {
-                            selfServiceController.registerDocument(
+                            controller.registerDocument(
                               DocumentType.healthInsureceCard,
                               filePath.toString(),
                             );
@@ -92,7 +89,7 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin {
                         onTap: () async {
                           final filePath = await Navigator.of(context).pushNamed('/self-service/documents/scan');
                           if (filePath != null && filePath != '') {
-                            selfServiceController.registerDocument(
+                            controller.registerDocument(
                               DocumentType.medicalOrder,
                               filePath.toString(),
                             );
@@ -118,7 +115,7 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin {
                             fixedSize: const Size.fromHeight(48),
                           ),
                           onPressed: () {
-                            selfServiceController.clearDocuments();
+                            controller.clearDocuments();
                             setState(() {});
                           },
                           child: const Text('REMOVER TODAS'),
@@ -134,7 +131,7 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin {
                             fixedSize: const Size.fromHeight(48),
                           ),
                           onPressed: () async {
-                            await selfServiceController.finalize();
+                            await controller.finalize();
                           },
                           child: const Text('FINALIZAR'),
                         ),

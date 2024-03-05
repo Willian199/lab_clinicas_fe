@@ -1,6 +1,5 @@
 import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import 'package:fe_lab_clinicas_painel/pages/login/login_controller.dart';
-import 'package:fe_lab_clinicas_painel/pages/painel/painel_module.dart';
 import 'package:flutter/material.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 import 'package:validatorless/validatorless.dart';
@@ -23,7 +22,7 @@ class _LoginPageState extends State<LoginPage> with MessageViewMixin, FlutterCon
     effect(() => {
           if (controller.logged)
             {
-              Navigator.of(context).pushReplacementType<PainelModule>(),
+              Navigator.of(context).pushReplacementNamed('/painel'),
             }
         });
     super.initState();

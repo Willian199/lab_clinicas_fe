@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
-import 'package:fe_lab_clinicas_painel/bidings/lab_clinicas_application_binding.dart';
+import 'package:fe_lab_clinicas_painel/bidings/lab_clinicas_routes.dart';
+import 'package:fe_lab_clinicas_painel/core/env.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,11 +21,11 @@ class LabClinicasPainel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const FlutterDDIModule(
-      module: LabClinicasApplicationBinding.new,
-      moduleName: '/',
+    return FlutterDDIWidget(
+      module: () => RestClient(Env.backendBaseUrl),
       child: LabClinicasCoreConfig(
         title: 'Lab Clinicas Painel',
+        routes: LabClinicasRoute.getRoutes(),
       ),
     );
   }

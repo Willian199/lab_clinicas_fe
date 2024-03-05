@@ -1,7 +1,6 @@
 import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import 'package:fe_lab_clinicas_self_service/src/modules/self_service/self_service_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_getit/flutter_getit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -12,14 +11,12 @@ class WhoIAmPage extends StatefulWidget {
   State<WhoIAmPage> createState() => _WhoIAmPageState();
 }
 
-class _WhoIAmPageState extends State<WhoIAmPage> {
+class _WhoIAmPageState extends State<WhoIAmPage> with FlutterController<SelfServiceController> {
   final formKey = GlobalKey<FormState>();
 
   final nameEC = TextEditingController();
 
   final sobrenomeEC = TextEditingController();
-
-  final selfServiceController = Injector.get<SelfServiceController>();
 
   @override
   void dispose() {
@@ -36,7 +33,7 @@ class _WhoIAmPageState extends State<WhoIAmPage> {
         nameEC.text = '';
         sobrenomeEC.text = '';
 
-        selfServiceController.clearForm();
+        controller.clearForm();
       },
       child: Scaffold(
         appBar: LabClinicasAppbar(
@@ -113,7 +110,7 @@ class _WhoIAmPageState extends State<WhoIAmPage> {
                             onEditingComplete: () {
                               final valid = formKey.currentState?.validate() ?? false;
                               if (valid) {
-                                selfServiceController.setWhoIAmDataStepAndNext(nameEC.text, sobrenomeEC.text);
+                                controller.setWhoIAmDataStepAndNext(nameEC.text, sobrenomeEC.text);
                               }
                             },
                             validator: Validatorless.required('Sobrenome obrigatório'),
@@ -131,7 +128,7 @@ class _WhoIAmPageState extends State<WhoIAmPage> {
                               onPressed: () {
                                 final valid = formKey.currentState?.validate() ?? false;
                                 if (valid) {
-                                  selfServiceController.setWhoIAmDataStepAndNext(nameEC.text, sobrenomeEC.text);
+                                  controller.setWhoIAmDataStepAndNext(nameEC.text, sobrenomeEC.text);
                                 }
                               },
                               child: const Text('Continuar'),

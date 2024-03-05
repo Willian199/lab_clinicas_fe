@@ -5,7 +5,6 @@ import 'package:fe_lab_clinicas_adm/pages/checkin/widgets/checkin_title.dart';
 import 'package:fe_lab_clinicas_adm/shared/data_item.dart';
 import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_getit/flutter_getit.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 class CheckinPage extends StatefulWidget {
@@ -15,9 +14,7 @@ class CheckinPage extends StatefulWidget {
   State<CheckinPage> createState() => _CheckinPageState();
 }
 
-class _CheckinPageState extends State<CheckinPage> with MessageViewMixin {
-  final controller = Injector.get<CheckinController>();
-
+class _CheckinPageState extends State<CheckinPage> with MessageViewMixin, FlutterController<CheckinController> {
   @override
   void initState() {
     messageListener(controller);

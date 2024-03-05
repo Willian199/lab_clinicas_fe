@@ -4,7 +4,6 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import 'package:fe_lab_clinicas_self_service/src/modules/self_service/widget/lab_clinicas_self_service_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_getit/flutter_getit.dart';
 
 class DocumentsScanPage extends StatefulWidget {
   const DocumentsScanPage({super.key});
@@ -19,7 +18,7 @@ class _DocumentsScanPageState extends State<DocumentsScanPage> {
   @override
   void initState() {
     cameraController = CameraController(
-      Injector.get<List<CameraDescription>>().first,
+      DDI.instance.get<List<CameraDescription>>().first,
       ResolutionPreset.ultraHigh,
     );
     super.initState();
