@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 
 class LabClinicasRoutes {
   static Map<String, WidgetBuilder> getRoutes() {
-    final r = FlutterDDIRouter.getRoutes(
+    return FlutterDDIRouter.getRoutes(
       modules: [
         FlutterDDIPage.from(path: '/', page: (_) => const SplashPage()),
         LoginModule(),
@@ -19,7 +19,5 @@ class LabClinicasRoutes {
         SelfServiceModule(),
       ],
     );
-
-    return r;
   }
 }

@@ -32,7 +32,7 @@ class LabClinicasSelfServiceApp extends StatelessWidget {
         title: 'Lab Clinicas Auto Atendimento',
         routes: LabClinicasRoutes.getRoutes(),
         didStart: () {
-          DDI.instance.registerSingleton<List<CameraDescription>>(() => _cameras);
+          DDI.instance.registerObject<List<CameraDescription>>(_cameras);
         },
       ),
     );
