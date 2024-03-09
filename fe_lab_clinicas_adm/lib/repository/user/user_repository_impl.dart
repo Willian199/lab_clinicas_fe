@@ -6,7 +6,7 @@ import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 
 import './user_repository.dart';
 
-class UserRepositoryImpl with FlutterController<RestClient> implements UserRepository {
+class UserRepositoryImpl with DDIController<RestClient> implements UserRepository {
   @override
   Future<Either<AuthException, String>> login(String email, String password) async {
     try {

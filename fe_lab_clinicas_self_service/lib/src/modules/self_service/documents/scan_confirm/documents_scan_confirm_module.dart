@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 class DocumentsScanConfirmModule extends FlutterDDIModule {
   @override
   FutureOr<void> onPostConstruct() {
-    registerApplication<DocumentsRepository>(() => DocumentsRepositoryImpl(restClient: inject()));
-    registerApplication(() => DocumentsScanConfirmController(documentsRepository: inject()));
+    registerApplication<DocumentsRepository>(() => DocumentsRepositoryImpl(restClient: ddi()));
+    registerApplication(() => DocumentsScanConfirmController(documentsRepository: ddi()));
   }
 
   @override

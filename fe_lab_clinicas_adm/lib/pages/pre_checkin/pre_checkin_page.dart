@@ -12,7 +12,7 @@ class PreCheckinPage extends StatefulWidget {
   State<PreCheckinPage> createState() => _PreCheckinPageState();
 }
 
-class _PreCheckinPageState extends State<PreCheckinPage> with MessageViewMixin, FlutterController<PreCheckinController> {
+class _PreCheckinPageState extends State<PreCheckinPage> with MessageViewMixin, DDIController<PreCheckinController> {
   @override
   void initState() {
     messageListener(controller);

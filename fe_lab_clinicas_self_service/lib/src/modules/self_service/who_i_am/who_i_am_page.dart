@@ -11,7 +11,7 @@ class WhoIAmPage extends StatefulWidget {
   State<WhoIAmPage> createState() => _WhoIAmPageState();
 }
 
-class _WhoIAmPageState extends State<WhoIAmPage> with FlutterController<SelfServiceController> {
+class _WhoIAmPageState extends State<WhoIAmPage> with DDIController<SelfServiceController> {
   final formKey = GlobalKey<FormState>();
 
   final nameEC = TextEditingController();

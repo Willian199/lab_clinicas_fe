@@ -12,7 +12,7 @@ class DocumentsPage extends StatefulWidget {
   State<DocumentsPage> createState() => _DocumentsPageState();
 }
 
-class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin, FlutterController<SelfServiceController> {
+class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin, DDIController<SelfServiceController> {
   @override
   void initState() {
     messageListener(controller);

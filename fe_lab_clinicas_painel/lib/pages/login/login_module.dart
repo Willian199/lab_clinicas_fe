@@ -12,9 +12,9 @@ import 'package:flutter/material.dart';
 class LoginModule extends FlutterDDIModule {
   @override
   FutureOr<void> onPostConstruct() {
-    registerApplication<UserRepository>(() => UserRepositoryImpl(restClient: inject()));
-    registerApplication<UserLoginService>(() => UserLoginServiceImpl(userRepository: inject()));
-    registerApplication(() => LoginController(loginService: inject()));
+    registerApplication<UserRepository>(() => UserRepositoryImpl(restClient: ddi()));
+    registerApplication<UserLoginService>(() => UserLoginServiceImpl(userRepository: ddi()));
+    registerApplication(() => LoginController(loginService: ddi()));
   }
 
   @override

@@ -13,7 +13,7 @@ class PainelPage extends StatefulWidget {
   State<PainelPage> createState() => _PainelPageState();
 }
 
-class _PainelPageState extends State<PainelPage> with FlutterController<PainelController> {
+class _PainelPageState extends State<PainelPage> with DDIController<PainelController> {
   @override
   void initState() {
     controller.listenerPainel();
@@ -44,7 +44,7 @@ class _PainelPageState extends State<PainelPage> with FlutterController<PainelCo
       listPanel.removeAt(0);
     }
 
-    final List<PainelCheckinModel>? others = listPanel;
+    final List<PainelCheckinModel> others = listPanel;
 
     return Scaffold(
       appBar: LabClinicasAppbar(),
@@ -111,12 +111,11 @@ class _PainelPageState extends State<PainelPage> with FlutterController<PainelCo
               spacing: 10,
               runSpacing: 10,
               children: others
-                      ?.map((p) => PasswordTile(
-                            desknumber: p.password,
-                            password: p.attendantDesk.toString(),
-                          ))
-                      .toList() ??
-                  const [SizedBox.shrink()],
+                  .map((p) => PasswordTile(
+                        desknumber: p.password,
+                        password: p.attendantDesk.toString(),
+                      ))
+                  .toList(),
             )
           ],
         ),

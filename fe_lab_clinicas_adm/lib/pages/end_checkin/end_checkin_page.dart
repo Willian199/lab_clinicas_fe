@@ -10,7 +10,7 @@ class EndCheckinPage extends StatefulWidget {
   State<EndCheckinPage> createState() => _EndCheckinPageState();
 }
 
-class _EndCheckinPageState extends State<EndCheckinPage> with MessageViewMixin, FlutterController<EndCheckinController> {
+class _EndCheckinPageState extends State<EndCheckinPage> with MessageViewMixin, DDIController<EndCheckinController> {
   @override
   void initState() {
     messageListener(controller);

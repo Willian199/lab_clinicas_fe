@@ -15,7 +15,7 @@ class FindPatientPage extends StatefulWidget {
   State<FindPatientPage> createState() => _FindPatientPageState();
 }
 
-class _FindPatientPageState extends State<FindPatientPage> with MessageViewMixin, FlutterController<FindPatientController> {
+class _FindPatientPageState extends State<FindPatientPage> with MessageViewMixin, DDIController<FindPatientController> {
   final formKey = GlobalKey<FormState>();
 
   final documentEC = TextEditingController();

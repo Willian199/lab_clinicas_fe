@@ -14,7 +14,7 @@ class CheckinPage extends StatefulWidget {
   State<CheckinPage> createState() => _CheckinPageState();
 }
 
-class _CheckinPageState extends State<CheckinPage> with MessageViewMixin, FlutterController<CheckinController> {
+class _CheckinPageState extends State<CheckinPage> with MessageViewMixin, DDIController<CheckinController> {
   @override
   void initState() {
     messageListener(controller);

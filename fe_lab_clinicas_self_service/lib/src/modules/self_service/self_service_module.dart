@@ -32,8 +32,8 @@ class SelfServiceModule extends FlutterDDIModuleRouter with DDIModule {
 
   @override
   FutureOr<void> onPostConstruct() {
-    registerApplication<InformationFormRepository>(() => InformationFormRepositoryImpl(restClient: inject()));
-    registerApplication(() => SelfServiceController(informationRepository: inject()));
-    registerApplication<PatientRepository>(() => PatientRepositoryImpl(restClient: inject()));
+    registerApplication<InformationFormRepository>(() => InformationFormRepositoryImpl(restClient: ddi()));
+    registerApplication(() => SelfServiceController(informationRepository: ddi()));
+    registerApplication<PatientRepository>(() => PatientRepositoryImpl(restClient: ddi()));
   }
 }

@@ -15,7 +15,7 @@ class LoginModule extends FlutterDDIModule {
     registerApplication<UserRepository>(UserRepositoryImpl.new);
     registerApplication<UserLoginService>(UserLoginServiceImpl.new);
     registerApplication(
-      () => LoginController(loginService: inject()),
+      () => LoginController(loginService: ddi()),
     );
   }
 

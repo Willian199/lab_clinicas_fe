@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> with MessageViewMixin, FlutterController<LoginController> {
+class _LoginPageState extends State<LoginPage> with MessageViewMixin, DDIController<LoginController> {
   final formKey = GlobalKey<FormState>();
 
   final emailEC = TextEditingController();

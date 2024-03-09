@@ -16,17 +16,17 @@ import 'package:flutter/material.dart';
 class HomeModule extends FlutterDDIModule {
   @override
   FutureOr<void> onPostConstruct() {
-    registerApplication<PatientInformationFormRepository>(() => PatientInformationFormRepositoryImpl(restClient: inject()));
-    registerApplication<PanelRepository>(() => PanelRepositoryImpl(restClient: inject()));
-    registerApplication<AttendantDeskAssignmentRepository>(() => AttendantDeskAssignmentRepositoryImpl(restClient: inject()));
+    registerApplication<PatientInformationFormRepository>(() => PatientInformationFormRepositoryImpl(restClient: ddi()));
+    registerApplication<PanelRepository>(() => PanelRepositoryImpl(restClient: ddi()));
+    registerApplication<AttendantDeskAssignmentRepository>(() => AttendantDeskAssignmentRepositoryImpl(restClient: ddi()));
 
     registerApplication<CallNextPatientService>(() => CallNextPatientServiceImpl(
-          patientInformationFormRepository: inject(),
-          attendantDeskAssignmentRepository: inject(),
-          panelRepository: inject(),
+          patientInformationFormRepository: ddi(),
+          attendantDeskAssignmentRepository: ddi(),
+          panelRepository: ddi(),
         ));
 
-    registerApplication(() => HomeController(attendantDeskAssignmentRepository: inject(), callNextPatientService: inject()));
+    registerApplication(() => HomeController(attendantDeskAssignmentRepository: ddi(), callNextPatientService: ddi()));
   }
 
   @override

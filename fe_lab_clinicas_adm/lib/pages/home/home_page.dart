@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with MessageViewMixin, FlutterController<HomeController> {
+class _HomePageState extends State<HomePage> with MessageViewMixin, DDIController<HomeController> {
   final formKey = GlobalKey<FormState>();
   final deskNumberEC = TextEditingController();
 

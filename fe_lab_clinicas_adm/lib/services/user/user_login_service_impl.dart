@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'user_login_service.dart';
 
-class UserLoginServiceImpl with FlutterController<UserRepository> implements UserLoginService {
+class UserLoginServiceImpl with DDIController<UserRepository> implements UserLoginService {
   @override
   Future<Either<ServiceException, Unit>> execute(String email, String password) async {
     final loginResult = await controller.login(email, password);

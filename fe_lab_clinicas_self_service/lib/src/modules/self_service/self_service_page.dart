@@ -10,7 +10,7 @@ class SelfServicePage extends StatefulWidget {
   State<SelfServicePage> createState() => _SelfServicePageState();
 }
 
-class _SelfServicePageState extends State<SelfServicePage> with MessageViewMixin, FlutterController<SelfServiceController> {
+class _SelfServicePageState extends State<SelfServicePage> with MessageViewMixin, DDIController<SelfServiceController> {
   @override
   void initState() {
     messageListener(controller);

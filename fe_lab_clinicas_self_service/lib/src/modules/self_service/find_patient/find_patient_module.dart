@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class FindPatientModule extends FlutterDDIModule {
   @override
   FutureOr<void> onPostConstruct() {
-    registerApplication(() => FindPatientController(patientRepository: inject()));
+    registerApplication(() => FindPatientController(patientRepository: ddi()));
   }
 
   @override
