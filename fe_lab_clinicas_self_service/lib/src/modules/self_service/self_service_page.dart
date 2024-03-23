@@ -10,23 +10,23 @@ class SelfServicePage extends StatefulWidget {
   State<SelfServicePage> createState() => _SelfServicePageState();
 }
 
-class _SelfServicePageState extends State<SelfServicePage> with MessageViewMixin, DDIController<SelfServiceController> {
+class _SelfServicePageState extends State<SelfServicePage> with MessageViewMixin, DDIInject<SelfServiceController> {
   @override
   void initState() {
-    messageListener(controller);
+    messageListener(instance);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      controller.startProcess();
+      instance.startProcess();
       effect(() {
         var baseRoute = '/self-service/';
-        final step = controller.step;
+        final step = instance.step;
 
         switch (step) {
           case FormSteps.restart:
             Navigator.of(context).popUntil(
               ModalRoute.withName('/self-service'),
             );
-            controller.startProcess();
+            instance.startProcess();
             return;
           case FormSteps.none:
             return;

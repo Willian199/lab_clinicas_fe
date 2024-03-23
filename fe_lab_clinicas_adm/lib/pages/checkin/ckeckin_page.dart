@@ -14,13 +14,13 @@ class CheckinPage extends StatefulWidget {
   State<CheckinPage> createState() => _CheckinPageState();
 }
 
-class _CheckinPageState extends State<CheckinPage> with MessageViewMixin, DDIController<CheckinController> {
+class _CheckinPageState extends State<CheckinPage> with MessageViewMixin, DDIInject<CheckinController> {
   @override
   void initState() {
-    messageListener(controller);
+    messageListener(instance);
 
     effect(() {
-      if (controller.endProcess()) {
+      if (instance.endProcess()) {
         Navigator.of(context).pushReplacementNamed('/end-checkin');
       }
     });
@@ -32,7 +32,7 @@ class _CheckinPageState extends State<CheckinPage> with MessageViewMixin, DDICon
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
 
-    final PatientInformationFormModel(:password, :patient, :medicalOrders, :healthInsuranceCard) = controller.patientInformationForm.watch(context)!;
+    final PatientInformationFormModel(:password, :patient, :medicalOrders, :healthInsuranceCard) = instance.patientInformationForm.watch(context)!;
 
     return Scaffold(
       appBar: LabClinicasAppbar(),
@@ -144,7 +144,7 @@ class _CheckinPageState extends State<CheckinPage> with MessageViewMixin, DDICon
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: controller.endCheckin,
+                    onPressed: instance.endCheckin,
                     child: const Text('FINALIZAR ATENDIMENTO'),
                   ),
                 ),

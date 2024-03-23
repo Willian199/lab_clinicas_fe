@@ -12,18 +12,18 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with MessageViewMixin, DDIController<HomeController> {
+class _HomePageState extends State<HomePage> with MessageViewMixin, DDIInject<HomeController> {
   final formKey = GlobalKey<FormState>();
   final deskNumberEC = TextEditingController();
 
   @override
   void initState() {
-    messageListener(controller);
+    messageListener(instance);
     effect(() {
-      if (controller.informationForm != null) {
+      if (instance.informationForm != null) {
         Navigator.of(context).pushReplacementNamed(
           '/pre-checkin',
-          arguments: controller.informationForm,
+          arguments: instance.informationForm,
         );
       }
     });
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> with MessageViewMixin, DDIControlle
                       final valid = formKey.currentState?.validate() ?? false;
 
                       if (valid) {
-                        controller.startService(int.parse(deskNumberEC.text));
+                        instance.startService(int.parse(deskNumberEC.text));
                       }
                     },
                     child: const Text('CHAMAR PRÓXIMO PACIENTE'),

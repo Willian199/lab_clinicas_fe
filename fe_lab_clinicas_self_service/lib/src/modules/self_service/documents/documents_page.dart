@@ -12,17 +12,17 @@ class DocumentsPage extends StatefulWidget {
   State<DocumentsPage> createState() => _DocumentsPageState();
 }
 
-class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin, DDIController<SelfServiceController> {
+class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin, DDIInject<SelfServiceController> {
   @override
   void initState() {
-    messageListener(controller);
+    messageListener(instance);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
-    final documents = controller.model.documents;
+    final documents = instance.model.documents;
     final totalHealthInsureceCard = documents?[DocumentType.healthInsureceCard]?.length ?? 0;
     final totalMedicalOrder = documents?[DocumentType.medicalOrder]?.length ?? 0;
 
@@ -70,7 +70,7 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin, DD
                         onTap: () async {
                           final filePath = await Navigator.of(context).pushNamed('/self-service/documents/scan');
                           if (filePath != null && filePath != '') {
-                            controller.registerDocument(
+                            instance.registerDocument(
                               DocumentType.healthInsureceCard,
                               filePath.toString(),
                             );
@@ -89,7 +89,7 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin, DD
                         onTap: () async {
                           final filePath = await Navigator.of(context).pushNamed('/self-service/documents/scan');
                           if (filePath != null && filePath != '') {
-                            controller.registerDocument(
+                            instance.registerDocument(
                               DocumentType.medicalOrder,
                               filePath.toString(),
                             );
@@ -115,7 +115,7 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin, DD
                             fixedSize: const Size.fromHeight(48),
                           ),
                           onPressed: () {
-                            controller.clearDocuments();
+                            instance.clearDocuments();
                             setState(() {});
                           },
                           child: const Text('REMOVER TODAS'),
@@ -131,7 +131,7 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin, DD
                             fixedSize: const Size.fromHeight(48),
                           ),
                           onPressed: () async {
-                            await controller.finalize();
+                            await instance.finalize();
                           },
                           child: const Text('FINALIZAR'),
                         ),

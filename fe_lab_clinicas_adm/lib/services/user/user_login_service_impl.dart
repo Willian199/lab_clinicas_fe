@@ -4,10 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'user_login_service.dart';
 
-class UserLoginServiceImpl with DDIController<UserRepository> implements UserLoginService {
+class UserLoginServiceImpl with DDIInject<UserRepository> implements UserLoginService {
   @override
   Future<Either<ServiceException, Unit>> execute(String email, String password) async {
-    final loginResult = await controller.login(email, password);
+    final loginResult = await instance.login(email, password);
 
     switch (loginResult) {
       case Left(value: AuthErrorException()):

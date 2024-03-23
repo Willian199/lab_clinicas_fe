@@ -13,10 +13,10 @@ class DocumentsScanConfirmPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = DDI.instance.get<DocumentsScanConfirmController>();
+    final controller = context.get<DocumentsScanConfirmController>();
 
     final sizeOf = MediaQuery.sizeOf(context);
-    final foto = ModalRoute.of(context)!.settings.arguments as XFile;
+    final foto = context.arguments<XFile>()!;
 
     controller.pathRemoteStorage.listen(context, () {
       Navigator.of(context).pop();

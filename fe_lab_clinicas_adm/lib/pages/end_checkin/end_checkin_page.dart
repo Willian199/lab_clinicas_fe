@@ -10,16 +10,16 @@ class EndCheckinPage extends StatefulWidget {
   State<EndCheckinPage> createState() => _EndCheckinPageState();
 }
 
-class _EndCheckinPageState extends State<EndCheckinPage> with MessageViewMixin, DDIController<EndCheckinController> {
+class _EndCheckinPageState extends State<EndCheckinPage> with MessageViewMixin, DDIInject<EndCheckinController> {
   @override
   void initState() {
-    messageListener(controller);
+    messageListener(instance);
 
     effect(() {
-      if (controller.patientInformationForm() != null) {
+      if (instance.patientInformationForm() != null) {
         Navigator.of(context).pushReplacementNamed(
           '/pre-checkin',
-          arguments: controller.patientInformationForm.value,
+          arguments: instance.patientInformationForm.value,
         );
       }
     });
@@ -57,7 +57,7 @@ class _EndCheckinPageState extends State<EndCheckinPage> with MessageViewMixin, 
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: controller.callNextPatient,
+                  onPressed: instance.callNextPatient,
                   child: const Text('CHAMAR OUTRA SENHA'),
                 ),
               ),

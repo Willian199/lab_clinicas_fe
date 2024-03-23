@@ -11,16 +11,16 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> with MessageViewMixin, DDIController<LoginController> {
+class _LoginPageState extends State<LoginPage> with MessageViewMixin, DDIInject<LoginController> {
   final formKey = GlobalKey<FormState>();
   final emailEC = TextEditingController();
   final passwordEC = TextEditingController();
 
   @override
   void initState() {
-    messageListener(controller);
+    messageListener(instance);
     effect(() => {
-          if (controller.logged)
+          if (instance.logged)
             {
               Navigator.of(context).pushReplacementNamed('/home'),
             }
@@ -80,16 +80,16 @@ class _LoginPageState extends State<LoginPage> with MessageViewMixin, DDIControl
                     Watch(
                       (_) {
                         return TextFormField(
-                          obscureText: controller.obscurePassword,
+                          obscureText: instance.obscurePassword,
                           controller: passwordEC,
                           validator: Validatorless.required('Senha obrigatória'),
                           decoration: InputDecoration(
                             label: const Text('Password'),
                             suffixIcon: IconButton(
                               onPressed: () {
-                                controller.passwordToggle();
+                                instance.passwordToggle();
                               },
-                              icon: controller.obscurePassword ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+                              icon: instance.obscurePassword ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
                             ),
                           ),
                         );
@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> with MessageViewMixin, DDIControl
                         onPressed: () {
                           final valid = formKey.currentState?.validate() ?? false;
                           if (valid) {
-                            controller.login(emailEC.text, passwordEC.text);
+                            instance.login(emailEC.text, passwordEC.text);
                           }
                         },
                         child: const Text('ENTRAR'),

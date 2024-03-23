@@ -12,10 +12,10 @@ class PreCheckinPage extends StatefulWidget {
   State<PreCheckinPage> createState() => _PreCheckinPageState();
 }
 
-class _PreCheckinPageState extends State<PreCheckinPage> with MessageViewMixin, DDIController<PreCheckinController> {
+class _PreCheckinPageState extends State<PreCheckinPage> with MessageViewMixin, DDIInject<PreCheckinController> {
   @override
   void initState() {
-    messageListener(controller);
+    messageListener(instance);
 
     super.initState();
   }
@@ -24,7 +24,7 @@ class _PreCheckinPageState extends State<PreCheckinPage> with MessageViewMixin, 
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
 
-    final PatientInformationFormModel(:password, :patient) = controller.patientInformationForm.watch(context)!;
+    final PatientInformationFormModel(:password, :patient) = instance.patientInformationForm.watch(context)!;
 
     return Scaffold(
       appBar: LabClinicasAppbar(),
@@ -115,7 +115,7 @@ class _PreCheckinPageState extends State<PreCheckinPage> with MessageViewMixin, 
                   children: [
                     Expanded(
                       child: OutlinedButton(
-                        onPressed: controller.next,
+                        onPressed: instance.next,
                         child: const Text('CHAMAR OUTRA SENHA'),
                       ),
                     ),
@@ -125,7 +125,7 @@ class _PreCheckinPageState extends State<PreCheckinPage> with MessageViewMixin, 
                         onPressed: () {
                           Navigator.of(context).pushReplacementNamed(
                             '/checkin',
-                            arguments: controller.patientInformationForm(),
+                            arguments: instance.patientInformationForm(),
                           );
                         },
                         child: const Text('ATENDER'),

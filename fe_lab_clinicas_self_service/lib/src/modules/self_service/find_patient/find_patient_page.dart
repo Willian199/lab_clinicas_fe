@@ -15,19 +15,19 @@ class FindPatientPage extends StatefulWidget {
   State<FindPatientPage> createState() => _FindPatientPageState();
 }
 
-class _FindPatientPageState extends State<FindPatientPage> with MessageViewMixin, DDIController<FindPatientController> {
+class _FindPatientPageState extends State<FindPatientPage> with MessageViewMixin, DDIInject<FindPatientController> {
   final formKey = GlobalKey<FormState>();
 
   final documentEC = TextEditingController();
 
   @override
   void initState() {
-    messageListener(controller);
+    messageListener(instance);
     effect(() {
-      final FindPatientController(:patient, :patientNotFound) = controller;
+      final FindPatientController(:patient, :patientNotFound) = instance;
 
       if (patient != null || patientNotFound != null) {
-        DDI.instance.get<SelfServiceController>().goToFormPatient(patient);
+        ddi.get<SelfServiceController>().goToFormPatient(patient);
       }
     });
     super.initState();
@@ -78,7 +78,7 @@ class _FindPatientPageState extends State<FindPatientPage> with MessageViewMixin
                           onEditingComplete: () {
                             final valid = formKey.currentState?.validate() ?? false;
                             if (valid) {
-                              controller.findPatientByDocument(documentEC.text);
+                              instance.findPatientByDocument(documentEC.text);
                             }
                           },
                           validator: Validatorless.required('CPF obrigatório'),
@@ -105,7 +105,7 @@ class _FindPatientPageState extends State<FindPatientPage> with MessageViewMixin
                             ),
                             TextButton(
                               onPressed: () {
-                                controller.continueWithoutDocument();
+                                instance.continueWithoutDocument();
                               },
                               child: const Text(
                                 'Clique aqui',
@@ -128,7 +128,7 @@ class _FindPatientPageState extends State<FindPatientPage> with MessageViewMixin
                             onPressed: () {
                               final valid = formKey.currentState?.validate() ?? false;
                               if (valid) {
-                                controller.findPatientByDocument(documentEC.text);
+                                instance.findPatientByDocument(documentEC.text);
                               }
                             },
                             child: const Text('Continuar'),

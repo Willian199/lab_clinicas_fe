@@ -19,7 +19,7 @@ class PreCheckinModule extends FlutterDDIModule {
 
   @override
   WidgetBuilder get page => (context) {
-        final form = ModalRoute.of(context)!.settings.arguments as PatientInformationFormModel;
+        final form = context.arguments<PatientInformationFormModel>();
         context.get<PreCheckinController>().patientInformationForm.value = form;
 
         return const PreCheckinPage();

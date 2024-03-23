@@ -10,7 +10,7 @@ class CheckinModule extends FlutterDDIPage {
 
   @override
   WidgetBuilder get page => (context) {
-        final form = ModalRoute.of(context)!.settings.arguments as PatientInformationFormModel;
+        final form = context.arguments<PatientInformationFormModel>();
         context.get<CheckinController>().patientInformationForm.value = form;
 
         return const CheckinPage();

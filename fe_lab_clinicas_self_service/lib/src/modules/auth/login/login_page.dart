@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> with MessageViewMixin, DDIController<LoginController> {
+class _LoginPageState extends State<LoginPage> with MessageViewMixin, DDIInject<LoginController> {
   final formKey = GlobalKey<FormState>();
 
   final emailEC = TextEditingController();
@@ -19,9 +19,9 @@ class _LoginPageState extends State<LoginPage> with MessageViewMixin, DDIControl
 
   @override
   void initState() {
-    messageListener(controller);
+    messageListener(instance);
     effect(() {
-      if (controller.logged) {
+      if (instance.logged) {
         Navigator.of(context).pushReplacementNamed('/home');
       }
     });
@@ -77,18 +77,18 @@ class _LoginPageState extends State<LoginPage> with MessageViewMixin, DDIControl
                       (_) {
                         return TextFormField(
                           controller: passwordEC,
-                          obscureText: controller.obscurePassword,
+                          obscureText: instance.obscurePassword,
                           onFieldSubmitted: (_) {
                             final valid = formKey.currentState?.validate() ?? false;
                             if (valid) {
-                              controller.login(emailEC.text, passwordEC.text);
+                              instance.login(emailEC.text, passwordEC.text);
                             }
                           },
                           decoration: InputDecoration(
                             label: const Text('Password'),
                             suffixIcon: IconButton(
-                              onPressed: controller.passwordToggle,
-                              icon: controller.obscurePassword ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+                              onPressed: instance.passwordToggle,
+                              icon: instance.obscurePassword ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
                             ),
                           ),
                           validator: Validatorless.required('Senha obrigatória'),
@@ -105,7 +105,7 @@ class _LoginPageState extends State<LoginPage> with MessageViewMixin, DDIControl
                         onPressed: () {
                           final valid = formKey.currentState?.validate() ?? false;
                           if (valid) {
-                            controller.login(emailEC.text, passwordEC.text);
+                            instance.login(emailEC.text, passwordEC.text);
                           }
                         },
                         child: const Text('Entrar'),

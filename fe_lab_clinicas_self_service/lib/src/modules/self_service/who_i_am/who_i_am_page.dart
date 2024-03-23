@@ -11,7 +11,7 @@ class WhoIAmPage extends StatefulWidget {
   State<WhoIAmPage> createState() => _WhoIAmPageState();
 }
 
-class _WhoIAmPageState extends State<WhoIAmPage> with DDIController<SelfServiceController> {
+class _WhoIAmPageState extends State<WhoIAmPage> with DDIInject<SelfServiceController> {
   final formKey = GlobalKey<FormState>();
 
   final nameEC = TextEditingController();
@@ -33,7 +33,7 @@ class _WhoIAmPageState extends State<WhoIAmPage> with DDIController<SelfServiceC
         nameEC.text = '';
         sobrenomeEC.text = '';
 
-        controller.clearForm();
+        instance.clearForm();
       },
       child: Scaffold(
         appBar: LabClinicasAppbar(
@@ -110,7 +110,7 @@ class _WhoIAmPageState extends State<WhoIAmPage> with DDIController<SelfServiceC
                             onEditingComplete: () {
                               final valid = formKey.currentState?.validate() ?? false;
                               if (valid) {
-                                controller.setWhoIAmDataStepAndNext(nameEC.text, sobrenomeEC.text);
+                                instance.setWhoIAmDataStepAndNext(nameEC.text, sobrenomeEC.text);
                               }
                             },
                             validator: Validatorless.required('Sobrenome obrigatório'),
@@ -128,7 +128,7 @@ class _WhoIAmPageState extends State<WhoIAmPage> with DDIController<SelfServiceC
                               onPressed: () {
                                 final valid = formKey.currentState?.validate() ?? false;
                                 if (valid) {
-                                  controller.setWhoIAmDataStepAndNext(nameEC.text, sobrenomeEC.text);
+                                  instance.setWhoIAmDataStepAndNext(nameEC.text, sobrenomeEC.text);
                                 }
                               },
                               child: const Text('Continuar'),

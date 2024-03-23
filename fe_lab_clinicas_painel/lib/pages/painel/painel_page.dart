@@ -13,16 +13,16 @@ class PainelPage extends StatefulWidget {
   State<PainelPage> createState() => _PainelPageState();
 }
 
-class _PainelPageState extends State<PainelPage> with DDIController<PainelController> {
+class _PainelPageState extends State<PainelPage> with DDIInject<PainelController> {
   @override
   void initState() {
-    controller.listenerPainel();
+    instance.listenerPainel();
     super.initState();
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    instance.dispose();
     super.dispose();
   }
 
@@ -30,7 +30,7 @@ class _PainelPageState extends State<PainelPage> with DDIController<PainelContro
   Widget build(BuildContext context) {
     var sizeOf = MediaQuery.sizeOf(context);
 
-    final listPanel = controller.painelData.watch(context);
+    final listPanel = instance.painelData.watch(context);
 
     final PainelCheckinModel? current = listPanel.firstOrNull;
 
