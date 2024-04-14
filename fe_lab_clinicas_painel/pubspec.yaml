@@ -38,24 +38,24 @@ dependencies:
     path: ../fe_lab_clinicas_core
   dio: ^5.4.0
   shared_preferences: ^2.2.2
-  signals_flutter: ^4.2.2
+  signals_flutter: ^5.0.0
   asyncstate: ^2.1.1-dev.1
   validatorless: ^1.2.3
   json_annotation: ^4.8.1
-  web_socket_channel: ^2.4.3
+  web_socket_channel: ^2.4.5
   intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   json_serializable: ^6.7.1
-  build_runner: ^2.4.8
+  build_runner: ^2.4.9
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

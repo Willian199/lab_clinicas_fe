@@ -14,7 +14,7 @@ class SelfServiceController with MessageStateMixin {
 
   final InformationFormRepository informationRepository;
 
-  final _step = ValueSignal(FormSteps.none);
+  final _step = Signal(FormSteps.none);
   var _model = const SelfServiceModel();
   var password = '';
 
@@ -23,12 +23,12 @@ class SelfServiceController with MessageStateMixin {
   FormSteps get step => _step.value;
 
   void startProcess() {
-    _step.forceUpdate(FormSteps.whoIAm);
+    _step.set(FormSteps.whoIAm, force: true);
   }
 
   void setWhoIAmDataStepAndNext(String name, String lastName) {
     _model = _model.copyWith(name: () => name, lastName: () => lastName);
-    _step.forceUpdate(FormSteps.findPatient);
+    _step.set(FormSteps.findPatient, force: true);
   }
 
   void clearForm() {
@@ -38,17 +38,17 @@ class SelfServiceController with MessageStateMixin {
   void goToFormPatient(PatientModel? patient) {
     _model = _model.copyWith(patient: () => patient);
 
-    _step.forceUpdate(FormSteps.patient);
+    _step.set(FormSteps.patient, force: true);
   }
 
   void restartProcess() {
-    _step.forceUpdate(FormSteps.restart);
+    _step.set(FormSteps.restart, force: true);
     clearForm();
   }
 
   void updatePatientAndGoDocument(PatientModel? patient) {
     _model = _model.copyWith(patient: () => patient);
-    _step.forceUpdate(FormSteps.documents);
+    _step.set(FormSteps.documents, force: true);
   }
 
   void registerDocument(DocumentType type, String filePath) {
@@ -74,7 +74,7 @@ class SelfServiceController with MessageStateMixin {
         showError('Erro ao registrar atendimento');
       case Right():
         password = '${_model.name}' '${_model.lastName}';
-        _step.forceUpdate(FormSteps.done);
+        _step.set(FormSteps.done, force: true);
     }
   }
 }

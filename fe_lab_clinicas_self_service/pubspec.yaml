@@ -39,9 +39,9 @@ dependencies:
   asyncstate: ^2.1.1-dev.1
   dotted_border: ^2.1.0
   validatorless: ^1.2.3
-  signals_flutter: ^4.2.2
+  signals_flutter: ^5.0.0
 
-  dio: ^5.4.0
+  dio: ^5.4.3
   shared_preferences: ^2.2.2
   json_annotation: ^4.8.1
   brasil_fields: ^1.14.3
@@ -56,9 +56,9 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^3.0.1
+  flutter_lints: ^3.0.2
   json_serializable: ^6.7.1
-  build_runner: ^2.4.8
+  build_runner: ^2.4.9
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
