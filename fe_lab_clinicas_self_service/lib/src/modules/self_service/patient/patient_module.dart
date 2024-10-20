@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class PatientModule extends FlutterDDIModule {
   @override
   FutureOr<void> onPostConstruct() {
-    registerApplication(() => PatientController(patientRepository: ddi()));
+    register(factory: ScopeFactory.application(builder: PatientController.new.builder));
   }
 
   @override

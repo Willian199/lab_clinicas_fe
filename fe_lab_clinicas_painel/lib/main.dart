@@ -21,9 +21,9 @@ class LabClinicasPainel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlutterDDIWidget(
+    return FlutterDDIBuilder(
       module: () => RestClient(Env.backendBaseUrl),
-      child: LabClinicasCoreConfig(
+      child: (_) => LabClinicasCoreConfig(
         title: 'Lab Clinicas Painel',
         routes: LabClinicasRoute.getRoutes(),
       ),

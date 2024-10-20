@@ -8,9 +8,9 @@ import 'package:signals_flutter/signals_flutter.dart';
 enum FormSteps { none, whoIAm, findPatient, patient, documents, done, restart }
 
 class SelfServiceController with MessageStateMixin {
-  SelfServiceController({
-    required this.informationRepository,
-  });
+  SelfServiceController(
+    this.informationRepository,
+  );
 
   final InformationFormRepository informationRepository;
 

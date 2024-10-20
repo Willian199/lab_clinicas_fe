@@ -16,17 +16,12 @@ import 'package:flutter/material.dart';
 class HomeModule extends FlutterDDIModule {
   @override
   FutureOr<void> onPostConstruct() {
-    registerApplication<PatientInformationFormRepository>(() => PatientInformationFormRepositoryImpl(restClient: ddi()));
-    registerApplication<PanelRepository>(() => PanelRepositoryImpl(restClient: ddi()));
-    registerApplication<AttendantDeskAssignmentRepository>(() => AttendantDeskAssignmentRepositoryImpl(restClient: ddi()));
+    register<PatientInformationFormRepository>(factory: ScopeFactory.application(builder: PatientInformationFormRepositoryImpl.new.builder));
+    register<PanelRepository>(factory: ScopeFactory.application(builder: PanelRepositoryImpl.new.builder));
+    registerApplication<AttendantDeskAssignmentRepository>(AttendantDeskAssignmentRepositoryImpl.new);
 
-    registerApplication<CallNextPatientService>(() => CallNextPatientServiceImpl(
-          patientInformationFormRepository: ddi(),
-          attendantDeskAssignmentRepository: ddi(),
-          panelRepository: ddi(),
-        ));
-
-    registerApplication(() => HomeController(attendantDeskAssignmentRepository: ddi(), callNextPatientService: ddi()));
+    register<CallNextPatientService>(factory: ScopeFactory.application(builder: CallNextPatientServiceImpl.new.builder));
+    register(factory: ScopeFactory.application(builder: HomeController.new.builder));
   }
 
   @override

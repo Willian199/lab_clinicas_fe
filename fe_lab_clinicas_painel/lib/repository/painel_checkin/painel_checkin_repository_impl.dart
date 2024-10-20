@@ -7,10 +7,8 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 import './painel_checkin_repository.dart';
 
-class PainelCheckinRepositoryImpl implements PainelCheckinRepository {
-  final RestClient restclient;
-
-  PainelCheckinRepositoryImpl({required this.restclient});
+class PainelCheckinRepositoryImpl with DDIInject<RestClient> implements PainelCheckinRepository {
+  PainelCheckinRepositoryImpl();
 
   @override
   Stream<List<PainelCheckinModel>> getTodayPanel(WebSocketChannel webSocketChannel) async* {
@@ -31,7 +29,7 @@ class PainelCheckinRepositoryImpl implements PainelCheckinRepository {
   Future<List<PainelCheckinModel>> requestData() async {
     final dateFormat = DateFormat('yyyy-MM-dd');
 
-    final Response(:List data) = await restclient.auth.get('/painelCheckin', queryParameters: {
+    final Response(:List data) = await instance.auth.get('/painelCheckin', queryParameters: {
       'time_called': dateFormat.format(DateTime.now()),
     });
 

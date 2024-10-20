@@ -7,7 +7,7 @@ import 'package:fe_lab_clinicas_self_service/src/model/patient_model.dart';
 import './patient_repository.dart';
 
 class PatientRepositoryImpl implements PatientRepository {
-  PatientRepositoryImpl({required this.restClient});
+  PatientRepositoryImpl(this.restClient);
 
   final RestClient restClient;
 

@@ -8,9 +8,9 @@ import 'package:fe_lab_clinicas_self_service/src/model/self_service_model.dart';
 import './information_form_repository.dart';
 
 class InformationFormRepositoryImpl implements InformationFormRepository {
-  InformationFormRepositoryImpl({
-    required this.restClient,
-  });
+  InformationFormRepositoryImpl(
+    this.restClient,
+  );
   final RestClient restClient;
 
   @override

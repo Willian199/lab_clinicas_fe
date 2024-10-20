@@ -7,7 +7,7 @@ import './user_login_service.dart';
 class UserLoginServiceImpl implements UserLoginService {
   final UserRepository userRepository;
 
-  UserLoginServiceImpl({required this.userRepository});
+  UserLoginServiceImpl(this.userRepository);
   @override
   Future<Either<ServiceException, Unit>> execute(String email, String password) async {
     final loginResult = await userRepository.login(email, password);

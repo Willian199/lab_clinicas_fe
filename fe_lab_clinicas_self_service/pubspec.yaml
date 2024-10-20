@@ -41,7 +41,7 @@ dependencies:
   validatorless: ^1.2.3
   signals_flutter: ^5.0.0
 
-  dio: ^5.4.3
+  dio: ^5.7.0
   shared_preferences: ^2.2.2
   json_annotation: ^4.8.1
   brasil_fields: ^1.14.3

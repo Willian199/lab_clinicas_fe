@@ -9,13 +9,11 @@ import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import 'call_next_patient_service.dart';
 
 class CallNextPatientServiceImpl implements CallNextPatientService {
-  CallNextPatientServiceImpl({
-    required PatientInformationFormRepository patientInformationFormRepository,
-    required AttendantDeskAssignmentRepository attendantDeskAssignmentRepository,
-    required PanelRepository panelRepository,
-  })  : _patientInformationFormRepository = patientInformationFormRepository,
-        _attendantDeskAssignmentRepository = attendantDeskAssignmentRepository,
-        _panelRepository = panelRepository;
+  CallNextPatientServiceImpl(
+    this._patientInformationFormRepository,
+    this._attendantDeskAssignmentRepository,
+    this._panelRepository,
+  );
 
   final PatientInformationFormRepository _patientInformationFormRepository;
   final AttendantDeskAssignmentRepository _attendantDeskAssignmentRepository;

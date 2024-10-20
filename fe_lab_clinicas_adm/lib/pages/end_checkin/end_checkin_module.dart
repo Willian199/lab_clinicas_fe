@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class EndCheckinModule extends FlutterDDIModule {
   @override
   FutureOr<void> onPostConstruct() {
-    registerApplication(() => EndCheckinController(callNextPatientService: DDI.instance.get()));
+    registerApplication(EndCheckinController.new);
   }
 
   @override

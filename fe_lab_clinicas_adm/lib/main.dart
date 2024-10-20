@@ -21,9 +21,9 @@ class LabClinicasAdm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlutterDDIWidget(
+    return FlutterDDIBuilder(
       module: () => RestClient(Env.backendBaseUrl),
-      child: LabClinicasCoreConfig(
+      child: (_) => LabClinicasCoreConfig(
         title: 'Lab Clinicas ADM',
         routes: LabClinicasRoute.getRoutes(),
       ),

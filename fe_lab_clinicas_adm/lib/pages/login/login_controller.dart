@@ -4,11 +4,9 @@ import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 class LoginController with MessageStateMixin {
-  LoginController({
-    required UserLoginService loginService,
-  }) : _loginService = loginService;
+  LoginController();
 
-  final UserLoginService _loginService;
+  late final UserLoginService _loginService = ddi();
 
   final _obscurePassword = signal(true);
   final _logged = signal(false);

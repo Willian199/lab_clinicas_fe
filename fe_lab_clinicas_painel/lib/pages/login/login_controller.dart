@@ -3,12 +3,8 @@ import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import 'package:fe_lab_clinicas_painel/service/user/user_login_service.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
-class LoginController with MessageStateMixin {
-  LoginController({
-    required UserLoginService loginService,
-  }) : _loginService = loginService;
-
-  final UserLoginService _loginService;
+class LoginController with MessageStateMixin, DDIInject<UserLoginService> {
+  LoginController();
 
   final _obscurePassword = signal(true);
   final _logged = signal(false);
@@ -19,7 +15,7 @@ class LoginController with MessageStateMixin {
   void passwordToggle() => _obscurePassword.value = !_obscurePassword.value;
 
   Future<void> login(String email, String password) async {
-    final loginResult = await _loginService.execute(email, password).asyncLoader();
+    final loginResult = await instance.execute(email, password).asyncLoader();
 
     switch (loginResult) {
       case Left(value: ServiceException(:final message)):

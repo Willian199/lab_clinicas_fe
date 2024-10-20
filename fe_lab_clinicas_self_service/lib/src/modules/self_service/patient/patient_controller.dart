@@ -4,7 +4,7 @@ import 'package:fe_lab_clinicas_self_service/src/repositories/patient/patient_re
 import 'package:signals_flutter/signals_flutter.dart';
 
 class PatientController with MessageStateMixin {
-  PatientController({required PatientRepository patientRepository}) : _patientRepository = patientRepository;
+  PatientController(this._patientRepository);
 
   final PatientRepository _patientRepository;
 

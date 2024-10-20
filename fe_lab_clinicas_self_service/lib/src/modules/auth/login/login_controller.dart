@@ -4,7 +4,7 @@ import 'package:fe_lab_clinicas_self_service/src/services/user/user_login_servic
 import 'package:signals_flutter/signals_flutter.dart';
 
 class LoginController with MessageStateMixin {
-  LoginController({required UserLoginService userLoginService}) : _userLoginService = userLoginService;
+  LoginController(this._userLoginService);
 
   final UserLoginService _userLoginService;
 

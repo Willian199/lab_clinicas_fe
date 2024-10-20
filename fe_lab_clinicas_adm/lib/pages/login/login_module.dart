@@ -14,9 +14,7 @@ class LoginModule extends FlutterDDIModule {
   FutureOr<void> onPostConstruct() {
     registerApplication<UserRepository>(UserRepositoryImpl.new);
     registerApplication<UserLoginService>(UserLoginServiceImpl.new);
-    registerApplication(
-      () => LoginController(loginService: ddi()),
-    );
+    registerApplication(LoginController.new);
   }
 
   @override

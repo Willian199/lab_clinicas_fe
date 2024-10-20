@@ -7,7 +7,7 @@ import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import './user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  UserRepositoryImpl({required this.restClient});
+  UserRepositoryImpl(this.restClient);
 
   final RestClient restClient;
 

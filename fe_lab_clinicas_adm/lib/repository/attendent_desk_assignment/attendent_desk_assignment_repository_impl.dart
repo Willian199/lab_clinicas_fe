@@ -4,12 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:fe_lab_clinicas_adm/repository/attendent_desk_assignment/attendent_desk_assignment_repository.dart';
 import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 
-class AttendantDeskAssignmentRepositoryImpl implements AttendantDeskAssignmentRepository {
-  final RestClient _restClient;
-
-  AttendantDeskAssignmentRepositoryImpl({
-    required RestClient restClient,
-  }) : _restClient = restClient;
+class AttendantDeskAssignmentRepositoryImpl with DDIInject<RestClient> implements AttendantDeskAssignmentRepository {
+  AttendantDeskAssignmentRepositoryImpl();
 
   @override
   Future<Either<RepositoryException, Unit>> startService(int deskNumber) async {
@@ -19,7 +15,7 @@ class AttendantDeskAssignmentRepositoryImpl implements AttendantDeskAssignmentRe
       case Left(value: final exception):
         return Left(exception);
       case Right():
-        await _restClient.auth.post(
+        await instance.auth.post(
           '/attendantDeskAssignment',
           data: {
             'user_id': '#userAuthRef',
@@ -34,7 +30,7 @@ class AttendantDeskAssignmentRepositoryImpl implements AttendantDeskAssignmentRe
   }
 
   Future<({String id, int deskNumber})?> _getDeskByUser() async {
-    final Response(:List data) = await _restClient.auth.get(
+    final Response(:List data) = await instance.auth.get(
       '/attendantDeskAssignment',
       queryParameters: {'user_id': '#userAuthRef'},
     );
@@ -55,7 +51,7 @@ class AttendantDeskAssignmentRepositoryImpl implements AttendantDeskAssignmentRe
       final desk = await _getDeskByUser();
 
       if (desk != null) {
-        await _restClient.auth.delete('/attendantDeskAssignment/${desk.id}');
+        await instance.auth.delete('/attendantDeskAssignment/${desk.id}');
       }
 
       return Right(unit);
@@ -69,7 +65,7 @@ class AttendantDeskAssignmentRepositoryImpl implements AttendantDeskAssignmentRe
   @override
   Future<Either<RepositoryException, int>> getDeskAssignment() async {
     try {
-      final Response(data: List(first: data)) = await _restClient.auth.get(
+      final Response(data: List(first: data)) = await instance.auth.get(
         '/attendantDeskAssignment',
         queryParameters: {
           'user_id': '#userAuthRef',

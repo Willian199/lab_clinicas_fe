@@ -7,9 +7,9 @@ import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import './documents_repository.dart';
 
 class DocumentsRepositoryImpl implements DocumentsRepository {
-  DocumentsRepositoryImpl({
-    required this.restClient,
-  });
+  DocumentsRepositoryImpl(
+    this.restClient,
+  );
 
   final RestClient restClient;
 

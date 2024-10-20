@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 class PainelModule extends FlutterDDIModule {
   @override
   FutureOr<void> onPostConstruct() {
-    registerApplication<PainelCheckinRepository>(() => PainelCheckinRepositoryImpl(restclient: ddi()));
-    registerApplication(() => PainelController(painelCheckinRepository: ddi()));
+    registerApplication<PainelCheckinRepository>(PainelCheckinRepositoryImpl.new);
+    registerApplication(PainelController.new);
   }
 
   @override

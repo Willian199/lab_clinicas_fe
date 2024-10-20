@@ -6,17 +6,13 @@ import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 
 import './patient_information_form_repository.dart';
 
-class PatientInformationFormRepositoryImpl implements PatientInformationFormRepository {
-  final RestClient _restClient;
-
-  PatientInformationFormRepositoryImpl({
-    required RestClient restClient,
-  }) : _restClient = restClient;
+class PatientInformationFormRepositoryImpl with DDIInject<RestClient> implements PatientInformationFormRepository {
+  PatientInformationFormRepositoryImpl();
 
   @override
   Future<Either<RepositoryException, PatientInformationFormModel?>> callNextToCheckin() async {
     try {
-      final Response(:List data) = await _restClient.auth.get(
+      final Response(:List data) = await instance.auth.get(
         '/patientInformationForm',
         queryParameters: {
           'status': PatientInformationFormStatus.waiting.id,
@@ -51,7 +47,7 @@ class PatientInformationFormRepositoryImpl implements PatientInformationFormRepo
   @override
   Future<Either<RepositoryException, Unit>> updateStatus(String id, PatientInformationFormStatus status) async {
     try {
-      await _restClient.auth.put(
+      await instance.auth.put(
         '/patientInformationForm/$id',
         data: {'status': status.id},
       );
@@ -65,7 +61,7 @@ class PatientInformationFormRepositoryImpl implements PatientInformationFormRepo
   }
 
   Future<Map<String, dynamic>> _getPatient(String id) async {
-    final Response(:data) = await _restClient.auth.get('/patients/$id');
+    final Response(:data) = await instance.auth.get('/patients/$id');
 
     return data;
   }

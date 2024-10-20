@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 class PreCheckinModule extends FlutterDDIModule {
   @override
   FutureOr<void> onPostConstruct() {
-    registerApplication(() => PreCheckinController(callNextPatientService: DDI.instance.get()));
-    registerApplication(() => CheckinController(patientInformationFormRepository: DDI.instance.get()));
+    registerApplication(PreCheckinController.new);
+    registerApplication(CheckinController.new);
   }
 
   @override

@@ -6,9 +6,9 @@ import 'package:fe_lab_clinicas_self_service/src/repositories/documents/document
 import 'package:signals_flutter/signals_flutter.dart';
 
 class DocumentsScanConfirmController with MessageStateMixin {
-  DocumentsScanConfirmController({
-    required this.documentsRepository,
-  });
+  DocumentsScanConfirmController(
+    this.documentsRepository,
+  );
 
   final DocumentsRepository documentsRepository;
 

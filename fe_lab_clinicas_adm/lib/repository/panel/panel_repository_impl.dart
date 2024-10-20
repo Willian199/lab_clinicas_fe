@@ -5,17 +5,13 @@ import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 
 import './panel_repository.dart';
 
-class PanelRepositoryImpl implements PanelRepository {
-  final RestClient _restClient;
-
-  PanelRepositoryImpl({
-    required RestClient restClient,
-  }) : _restClient = restClient;
+class PanelRepositoryImpl with DDIInject<RestClient> implements PanelRepository {
+  PanelRepositoryImpl();
 
   @override
   Future<Either<RepositoryException, String>> callOnPanel(String password, int attendantDesk) async {
     try {
-      final Response(data: {'id': id}) = await _restClient.auth.post(
+      final Response(data: {'id': id}) = await instance.auth.post(
         '/painelCheckin',
         data: {
           'password': password,

@@ -3,17 +3,13 @@ import 'package:fe_lab_clinicas_adm/services/call_next_patient/call_next_patient
 import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
-class PreCheckinController with MessageStateMixin {
-  final CallNextPatientService _callNextPatientService;
-
+class PreCheckinController with MessageStateMixin, DDIInject<CallNextPatientService> {
   final patientInformationForm = signal<PatientInformationFormModel?>(null);
 
-  PreCheckinController({
-    required CallNextPatientService callNextPatientService,
-  }) : _callNextPatientService = callNextPatientService;
+  PreCheckinController();
 
   Future<void> next() async {
-    final response = await _callNextPatientService.execute();
+    final response = await instance.execute();
     switch (response) {
       case Left(value: RepositoryException(:final message)):
         showError(message);
